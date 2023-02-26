@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,9 @@ import com.devsuperior.hrworker.repositories.WorkerRepository;
 public class WorkerResource {
 	
 	@Autowired
+	private Environment env;
+	
+	@Autowired
 	private WorkerRepository repository;
 	
 	@GetMapping
@@ -28,6 +32,9 @@ public class WorkerResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findById(@PathVariable Long id){
+		
+		
+		
 		Optional<Worker> worker = repository.findById(id);
 		return ResponseEntity.ok(worker.get());
 	}
